@@ -1,0 +1,98 @@
+# ========================================
+# 城市可达性分析项目 .gitignore
+# ========================================
+
+# ===== 输出文件夹 =====
+# 不上传pptx和图片等输出文件
+outputs/
+
+# ===== 系统文件 =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ===== 大型数据文件 =====
+# 地理信息数据文件（通常很大，不适合上传GitHub）
+*.dbf
+*.shp
+*.shx
+*.shp.xml
+*.prj
+*.sbn
+*.sbx
+*.cpg
+*.qmd
+
+# R数据文件
+*.rds
+*.rda
+*.RData
+*.Rhistory
+
+# ===== 演示文件 =====
+# PowerPoint文件
+*.pptx
+*.ppt
+~$*.pptx
+~$*.ppt
+
+# ===== 图片文件 =====
+# 注意：ICON文件夹中的图标会被保留，因为它们是项目资源
+# outputs文件夹中的图片会被排除
+
+# ===== IDE和编辑器 =====
+.vscode/
+.idea/
+*.Rproj
+.Rproj.user/
+*.sublime-*
+
+# ===== R相关 =====
+.RData
+.Rhistory
+.Rapp.history
+*-Ex.R
+/*.tar.gz
+/*.Rcheck/
+.Renviron
+
+# ===== Python相关 =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# ===== 临时文件 =====
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+*~
+
+# ===== 其他 =====
+# 压缩文件
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# 备份文件
+*.backup
+*.old
