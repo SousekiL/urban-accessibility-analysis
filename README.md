@@ -135,4 +135,4 @@ Data files (`.rds`, `.shp`, `.dbf`, etc.) are excluded from the repository via `
 
 ## Author
 
-**t.s.helianthus** -- [t.s.helianthus@outlook.com](mailto:t.s.helianthus@outlook.com)
+**Felix Liu** 
