@@ -1,6 +1,11 @@
-# Urban Accessibility Analysis
+## Urban Accessibility Analysis
 
 A geospatial research project analyzing urban accessibility and community structure differences across major Chinese cities. The primary comparison is between **Beijing** and **Shanghai**, with extended analysis of **Tianjin** and **Hangzhou**.
+
+## Project Summaries
+
+- **中文摘要 (`SUMMARY_CH.md`)**: 城市可达性与路网差异研究的中文总结，概括北京与上海在城市尺度、人口与商业资源分布、绕路指数和路网密度等方面的主要发现，并附部分代表性图示。
+- **English Summary (`SUMMARY_EN.md`)**: English research summary of the project, highlighting key questions, methods, and findings on accessibility and street network differences between Beijing and Shanghai, with selected figures for quick overview.
 
 ## Research Questions
 

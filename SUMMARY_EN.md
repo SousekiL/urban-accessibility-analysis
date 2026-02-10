@@ -26,35 +26,35 @@ This project uses AMap (Gaode) POI data, gridded population data, and OpenStreet
 
 ## Selected Figures
 
-> Below are several representative figures that illustrate the key findings. Image paths refer to outputs rendered under `main/plot/canger`.
+> Below are several representative figures that illustrate the key findings. Image paths refer to outputs rendered under `outputs/plots/plot/canger`.
 
 - **Figure 1: Comparable main urban areas of Beijing and Shanghai**
 
   Using the 5th Ring (Beijing) and the Outer Ring (Shanghai) to define comparable main urban areas highlights striking differences in **spatial scale and shape** between the two cities.
 
-  ![Fig 1. Extent of main urban areas (Beijing 5th Ring, Shanghai Outer Ring)](main/plot/canger/Fig 1.png)
+  ![Fig 1. Extent of main urban areas (Beijing 5th Ring, Shanghai Outer Ring)](outputs/plots/plot/canger/Fig 1.png)
 
 - **Figure 2: Spatial distribution of commercial and daily-life POIs**
 
   Commercial, restaurant, leisure and daily-service POIs form more continuous, dense “bright belts” in Shanghai, while within Beijing’s 5th Ring the same facilities are **less dense and more patchy**, with visible gaps.
 
-  ![Fig 2-1. Major commercial POIs in the main urban areas](main/plot/canger/Fig 2-1.png)
+  ![Fig 2-1. Major commercial POIs in the main urban areas](outputs/plots/plot/canger/Fig 2-1.png)
 
 - **Figure 3: Population grids and high-population areas**
 
   Population grids show that high-population cells in Beijing spread over a larger area, rather than concentrating in a few compact cores as in Shanghai. This pattern underpins later analyses of **population–commercial mismatches**.
 
-  ![Fig 3-1. Population density in the main urban areas](main/plot/canger/Fig 3-1.png)
+  ![Fig 3-1. Population density in the main urban areas](outputs/plots/plot/canger/Fig 3-1.png)
 
 - **Figure 4: Population-weighted OD samples and routes**
 
   By sampling a large number of origin–destination pairs based on population weights and computing routes on the road network, we visualize typical everyday trip patterns in both cities, which form the empirical basis for detour index and network density analysis.
 
-  ![Fig 4-1. Population-weighted sample origins/destinations and routes](main/plot/canger/Fig 4-1.png)
+  ![Fig 4-1. Population-weighted sample origins/destinations and routes](outputs/plots/plot/canger/Fig 4-1.png)
 
 - **Figure 5: Road network density from city center to suburbs**
 
   Radial road-density curves demonstrate that Shanghai maintains higher road density in core buffers, with a different decay pattern compared with Beijing. This structural difference aligns closely with the observed **differences in detour index**.
 
-  ![Fig 5-1. Comparison of road network density in Beijing and Shanghai](main/plot/canger/Fig 5-1.png)
+  ![Fig 5-1. Comparison of road network density in Beijing and Shanghai](outputs/plots/plot/canger/Fig 5-1.png)
 
