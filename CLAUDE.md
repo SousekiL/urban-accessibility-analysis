@@ -1,4 +1,4 @@
-# CLAUDE.md
+# Urban Accessibility Analysis
 
 ## Project Overview
 
@@ -25,6 +25,7 @@ The central research question: Why does Beijing feel like a "bigger city" than S
 │   ├── _coordTrans_sampling.R   # POI coordinate transform + route pair sampling
 │   ├── _getDis.R                # OSRM distance/route queries
 │   ├── _cityCentre_highway.R    # Road density by distance from center
+│   ├── _cityCentre_highway2.R   # Road density variant
 │   ├── _cityCentre_population.R # Population distribution by distance from center
 │   ├── _data_sampling.R         # Random point sampling
 │   ├── _geom_flat_violin.R      # Custom ggplot2 half-violin geometry
@@ -38,6 +39,8 @@ The central research question: Why does Beijing feel like a "bigger city" than S
 ├── data/                        # Geospatial data (git-ignored, ~735MB)
 ├── outputs/                     # Generated plots and presentations (git-ignored)
 ├── CLEANUP_REPORT.md            # Repo cleanup documentation
+├── README.md
+├── CLAUDE.md
 └── .gitignore
 ```
 
