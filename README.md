@@ -1,6 +1,17 @@
-## Urban Accessibility Analysis
+# Urban Accessibility Analysis
 
 A geospatial research project analyzing urban accessibility and community structure differences across major Chinese cities. The primary comparison is between **Beijing** and **Shanghai**, with extended analysis of **Tianjin** and **Hangzhou**.
+
+## Project Overview
+
+**Urban Accessibility Analysis** is an R-based geospatial research project that compares urban accessibility and community structure across major Chinese cities, primarily **Beijing** and **Shanghai**, with extended comparisons to **Tianjin** and **Hangzhou**.
+
+The central research question: Why does Beijing feel like a "bigger city" than Shanghai, and what urban structural factors (street networks, POI distribution, population layout, routing efficiency) explain this?
+
+## Language & Runtime
+
+- **R** (no Python) -- all analysis, data processing, and visualization
+- **Quarto** (`.qmd`) for reproducible report generation
 
 ## Project Summaries
 
@@ -38,6 +49,45 @@ A geospatial research project analyzing urban accessibility and community struct
 - Line charts for distance-dependent trends (road density, population share)
 - High-resolution output (300 DPI, 4000x2500px)
 
+## Project Structure
+
+```
+.
+├── main/                          # Analysis code
+│   ├── data_clean_map.R           # Spatial data loading and CRS setup
+│   ├── data_etl.R                 # Data combination and preparation
+│   ├── main_plot.qmd              # Main Quarto visualization document
+│   ├── main_plot_canger.qmd       # Alternative plot variant
+│   ├── main_plot_icon.qmd         # Icon-annotated variant
+│   ├── osrm.R                     # OSRM routing examples
+│   ├── _coordTrans_sampling.R     # Coordinate transforms + route sampling
+│   ├── _getDis.R                  # OSRM distance queries
+│   ├── _cityCentre_highway.R      # Road density from city center
+│   ├── _cityCentre_population.R   # Population distribution from center
+│   ├── _geom_flat_violin.R        # Custom half-violin ggplot2 geom
+│   ├── _data_sampling.R           # Point sampling utilities
+│   ├── _icon.R                    # Icon image processing
+│   ├── _showtext.R                # Font configuration
+│   ├── risingCoord/               # Coordinate transformation package
+│   │   └── R/                     # GCJ-02 <-> WGS84, Baidu <-> WGS84
+│   ├── city/                      # City-specific scripts
+│   └── xkcd/                      # XKCD-style plotting
+├── ICON/                          # Project branding assets
+├── data/                          # Geospatial data (not in repo)
+├── outputs/                       # Generated plots & presentations (not in repo)
+├── CLEANUP_REPORT.md              # Repo cleanup documentation
+└── .gitignore
+```
+
+## Workflow / Execution Order
+
+1. **Load spatial data** -- `data_clean_map.R` reads shapefiles, applies CRS projections, fetches basemap tiles
+2. **Process POI data** -- `_coordTrans_sampling.R` transforms Amap coordinates (GCJ-02 -> WGS-84) and samples 10,000 population-weighted route pairs per city
+3. **Calculate routes** -- `_getDis.R` queries the OSRM API for actual walking and driving distances
+4. **Compute ring metrics** -- `_cityCentre_highway.R` and `_cityCentre_population.R` calculate road density and population share in concentric rings from each city center
+5. **Combine datasets** -- `data_etl.R` merges distance, POI, and population data
+6. **Generate visualizations** -- `main_plot.qmd` produces 50+ figures covering POI maps, density heatmaps, detour distributions, and multi-city comparisons
+
 ## Data Sources
 
 | Source | Description |
@@ -46,6 +96,14 @@ A geospatial research project analyzing urban accessibility and community struct
 | **OpenStreetMap** | Road networks and routing via OSRM (`https://routing.openstreetmap.de/`) |
 | **Population Grids** | China population density shapefiles |
 | **City Boundaries** | Beijing Ring Roads, Shanghai Outer Ring, Tianjin, Hangzhou administrative boundaries |
+
+## Data Files
+
+All `.rds`, `.rda`, `.shp`, `.dbf` files are git-ignored. They must be obtained separately and placed in `data/`. Key processed data files include:
+- `bj_amap_poi.rds` / `sh_amap_poi.rds` -- processed POI points
+- `bj_amap_dis.rds` / `sh_amap_dis.rds` -- route distance calculations
+- `bj_sh_pop_density.rds` -- population by radius
+- `bj_sh_highway_density.rds` -- road density by distance
 
 ## R Packages
 
@@ -87,50 +145,18 @@ A geospatial research project analyzing urban accessibility and community struct
 |---------|---------|
 | `risingCoord` | In-repo package for GCJ-02/Baidu/WGS-84 coordinate transformations |
 
-## Project Structure
+## Style Conventions
 
-```
-.
-├── main/                          # Analysis code
-│   ├── data_clean_map.R           # Spatial data loading and CRS setup
-│   ├── data_etl.R                 # Data combination and preparation
-│   ├── main_plot.qmd              # Main Quarto visualization document
-│   ├── osrm.R                     # OSRM routing examples
-│   ├── _coordTrans_sampling.R     # Coordinate transforms + route sampling
-│   ├── _getDis.R                  # OSRM distance queries
-│   ├── _cityCentre_highway.R      # Road density from city center
-│   ├── _cityCentre_population.R   # Population distribution from center
-│   ├── _geom_flat_violin.R        # Custom half-violin ggplot2 geom
-│   ├── _data_sampling.R           # Point sampling utilities
-│   ├── _icon.R                    # Icon image processing
-│   ├── _showtext.R                # Font configuration
-│   ├── risingCoord/               # Coordinate transformation package
-│   ├── city/                      # City-specific scripts
-│   └── xkcd/                      # XKCD-style plotting
-├── ICON/                          # Project branding assets
-├── data/                          # Geospatial data (not in repo)
-├── outputs/                       # Generated plots & presentations (not in repo)
-├── CLEANUP_REPORT.md
-├── CLAUDE.md
-└── .gitignore
-```
+- Project color palette: `#E47250`, `#5A4A6F`, `#EBB261`, `#9D5A6C`
+- Plots: 300 DPI, 4000x2500px or 16x12 inches
+- Figure numbering: `Fig X-Y` (chapter-figure)
+- Chinese fonts via `showtext` for CJK text rendering
 
-## Workflow
+## Common Tasks
 
-1. **Load spatial data** -- `data_clean_map.R` reads shapefiles, applies CRS projections, fetches basemap tiles
-2. **Process POI data** -- `_coordTrans_sampling.R` transforms Amap coordinates (GCJ-02 -> WGS-84) and samples 10,000 population-weighted route pairs per city
-3. **Calculate routes** -- `_getDis.R` queries the OSRM API for actual walking and driving distances
-4. **Compute ring metrics** -- `_cityCentre_highway.R` and `_cityCentre_population.R` calculate road density and population share in concentric rings from each city center
-5. **Combine datasets** -- `data_etl.R` merges distance, POI, and population data
-6. **Generate visualizations** -- `main_plot.qmd` produces 50+ figures covering POI maps, density heatmaps, detour distributions, and multi-city comparisons
-
-## Data Setup
-
-Data files (`.rds`, `.shp`, `.dbf`, etc.) are excluded from the repository via `.gitignore` due to their size (~735MB). To reproduce the analysis:
-
-1. Obtain the Amap POI CSVs and population/boundary shapefiles
-2. Place them in the `data/` directory
-3. Run the scripts in the workflow order above
+- **Regenerate plots**: Render `main/main_plot.qmd` via Quarto
+- **Add a new city**: Follow the pattern in `_coordTrans_sampling.R` and `_getDis.R`, add city boundary shapefile to `data/`
+- **Update POI data**: Replace CSV in `data/`, re-run `_coordTrans_sampling.R`
 
 ## Output
 
@@ -138,6 +164,11 @@ Data files (`.rds`, `.shp`, `.dbf`, etc.) are excluded from the repository via `
 - **Quarto HTML report** rendered from `main_plot.qmd`
 - **PowerPoint presentations** for Beijing, Shanghai, and Taipei comparisons
 
+## External Services
+
+- OSRM routing API: `https://routing.openstreetmap.de/` (public, no auth required)
+- OSM basemap tiles fetched automatically by `basemaps` package
+
 ## Author
 
-**Felix Liu** 
+**Felix Liu**
