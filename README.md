@@ -4,7 +4,7 @@
 
 Why does everywhere feel far away in Beijing? This R project compares the main urban areas of **Beijing** (inside the 5th Ring Road) and **Shanghai** (inside the Outer Ring Road), with **Tianjin** and **Hangzhou** as extra reference points, using Amap POIs, gridded population and OpenStreetMap routing.
 
-![Main urban areas: Beijing 5th Ring vs. Shanghai Outer Ring](figures/fig1-urban-extent.png)
+[![Main urban areas: Beijing 5th Ring vs. Shanghai Outer Ring](figures/web/fig1-urban-extent.jpg)](figures/fig1-urban-extent.png)
 
 ## Key findings
 
@@ -15,7 +15,7 @@ Why does everywhere feel far away in Beijing? This R project compares the main u
 
 | POIs | Population | Road density |
 |---|---|---|
-| ![POI distribution](figures/fig2-poi-distribution.png) | ![Population density](figures/fig3-population-density.png) | ![Road density by distance from centre](figures/fig5-road-density.png) |
+| [![POI distribution](figures/web/fig2-poi-distribution.jpg)](figures/fig2-poi-distribution.png) | [![Population density](figures/web/fig3-population-density.jpg)](figures/fig3-population-density.png) | [![Road density by distance from centre](figures/web/fig5-road-density.jpg)](figures/fig5-road-density.png) |
 
 See the [中文摘要](SUMMARY_CH.md) or [English summary](SUMMARY_EN.md) for the full write-up.
 
@@ -68,7 +68,8 @@ See the [中文摘要](SUMMARY_CH.md) or [English summary](SUMMARY_EN.md) for th
 │   └── xkcd/                      # XKCD-style plotting
 ├── ICON/                          # Project branding assets
 ├── data/                          # Geospatial data (not in repo)
-├── figures/                       # Figures used in the README and summaries
+├── figures/                       # Full-resolution figures used in the README and summaries
+│   └── web/                       # Web-sized JPEG copies shown inline
 ├── outputs/                       # Generated plots & presentations (not in repo)
 └── .gitignore
 ```
@@ -101,13 +102,13 @@ All `.rds`, `.rda`, `.shp`, `.dbf` files are git-ignored. They must be obtained 
 
 ## Requirements
 
-R (≥ 4.2) with Quarto. Main packages: `sf`, `terra`, `tidyterra`, `tmap`, `basemaps`, `osrm`, `ggplot2`, `ggpubr`, `ggrepel`, `MetBrewer`, `magick`, `showtext`, `dplyr`, `data.table`, `purrr`, `glue`, plus the in-repo `risingCoord` package (`main/risingCoord/`) for GCJ-02 / Baidu ↔ WGS-84 conversion.
+R (≥ 4.2) with Quarto. Main packages: `sf`, `terra`, `tidyterra`, `tmap`, `basemaps`, `osrm`, `ggplot2`, `ggpubr`, `ggrepel`, `MetBrewer`, `magick`, `showtext`, `dplyr`, `data.table`, `purrr`, `glue`, plus the bundled third-party `risingCoord` package (`main/risingCoord/`, by t.s.helianthus) for GCJ-02 / Baidu ↔ WGS-84 conversion.
 
 Routing uses the public OSRM server at `https://routing.openstreetmap.de/` (no key needed); basemap tiles are fetched by `basemaps`.
 
 ## License
 
-Code is released under the [MIT License](LICENSE). Figures and text are © Felix Liu, licensed [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Third-party data (Amap POIs, OpenStreetMap, population grids, boundaries) are not redistributed here and remain under their original terms.
+Code is released under the [MIT License](LICENSE), except the bundled `main/risingCoord/` package, which is by t.s.helianthus (RisingLab), declares `License: None` in its DESCRIPTION, and is not relicensed here. Figures and text are © Felix Liu, licensed [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Third-party data (Amap POIs, OpenStreetMap, population grids, boundaries) are not redistributed here and remain under their original terms.
 
 ## Author
 

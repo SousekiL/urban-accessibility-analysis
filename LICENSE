@@ -1,5 +1,8 @@
 MIT License
 
+Scope: this license does not cover main/risingCoord/, a third-party R package
+by t.s.helianthus whose DESCRIPTION declares "License: None".
+
 Copyright (c) 2026 Felix Liu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

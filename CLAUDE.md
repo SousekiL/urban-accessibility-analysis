@@ -36,7 +36,7 @@ The central research question: Why does Beijing feel like a "bigger city" than S
 │   └── xkcd/                    # XKCD-style plot utilities
 ├── ICON/                        # Project branding assets
 ├── data/                        # Geospatial data (git-ignored, ~735MB)
-├── figures/                     # Figures used by README / SUMMARY files (tracked)
+├── figures/                     # Full-res figures used by README / SUMMARY (tracked); web/ holds inline JPEG copies
 ├── outputs/                     # Generated plots and presentations (git-ignored)
 └── .gitignore
 ```
