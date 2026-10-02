@@ -1,29 +1,23 @@
-# Urban Accessibility Analysis
+# Urban Accessibility Analysis · 北京为什么“显得更大”
 
-A geospatial research project analyzing urban accessibility and community structure differences across major Chinese cities. The primary comparison is between **Beijing** and **Shanghai**, with extended analysis of **Tianjin** and **Hangzhou**.
+**English** · [中文摘要](SUMMARY_CH.md) · [English summary](SUMMARY_EN.md) · [Article (WeChat, 中文)](https://mp.weixin.qq.com/s/ywQC_EmsF2VAiZprDFxhjg)
 
-## Project Overview
+Why does everywhere feel far away in Beijing? This R project compares the main urban areas of **Beijing** (inside the 5th Ring Road) and **Shanghai** (inside the Outer Ring Road), with **Tianjin** and **Hangzhou** as extra reference points, using Amap POIs, gridded population and OpenStreetMap routing.
 
-**Urban Accessibility Analysis** is an R-based geospatial research project that compares urban accessibility and community structure across major Chinese cities, primarily **Beijing** and **Shanghai**, with extended comparisons to **Tianjin** and **Hangzhou**.
+[![Main urban areas: Beijing 5th Ring vs. Shanghai Outer Ring](figures/web/fig1-urban-extent.jpg)](figures/fig1-urban-extent.png)
 
-The central research question: Why does Beijing feel like a "bigger city" than Shanghai, and what urban structural factors (street networks, POI distribution, population layout, routing efficiency) explain this?
+## Key findings
 
-## Language & Runtime
+- **Bigger area, thinner services.** Beijing's main urban area is much larger, yet it has fewer shopping, dining, leisure and daily-service POIs per km², and fewer bus and metro stops per km², than Shanghai's.
+- **People and shops don't line up.** Beijing's dense population cells are more scattered, and commercial density does not rise as fast as population density.
+- **Trips are more roundabout.** For both short walks (0–3 km) and long drives (>10 km), Beijing's detour index (route distance ÷ straight-line distance) is systematically a few percentage points higher.
+- **A coarser street grid.** Beijing has lower road density overall and especially within 5 km of the centre, where Shanghai has a much finer grid; compared with Tianjin and Hangzhou too, Beijing's 5 km core is still at the low end.
 
-- **R** (no Python) -- all analysis, data processing, and visualization
-- **Quarto** (`.qmd`) for reproducible report generation
+| POIs | Population | Road density |
+|---|---|---|
+| [![POI distribution](figures/web/fig2-poi-distribution.jpg)](figures/fig2-poi-distribution.png) | [![Population density](figures/web/fig3-population-density.jpg)](figures/fig3-population-density.png) | [![Road density by distance from centre](figures/web/fig5-road-density.jpg)](figures/fig5-road-density.png) |
 
-## Project Summaries
-
-- **中文摘要 (`SUMMARY_CH.md`)**: 城市可达性与路网差异研究的中文总结，概括北京与上海在城市尺度、人口与商业资源分布、绕路指数和路网密度等方面的主要发现，并附部分代表性图示。
-- **English Summary (`SUMMARY_EN.md`)**: English research summary of the project, highlighting key questions, methods, and findings on accessibility and street network differences between Beijing and Shanghai, with selected figures for quick overview.
-
-## Research Questions
-
-- Why does Beijing feel like a "bigger city" compared to Shanghai?
-- How do street network density, POI distribution, and population layout differ between cities?
-- What causes routing inefficiency (detours) in different urban structures?
-- How well do commercial resources align with population distribution?
+See the [中文摘要](SUMMARY_CH.md) or [English summary](SUMMARY_EN.md) for the full write-up.
 
 ## Methods
 
@@ -74,8 +68,9 @@ The central research question: Why does Beijing feel like a "bigger city" than S
 │   └── xkcd/                      # XKCD-style plotting
 ├── ICON/                          # Project branding assets
 ├── data/                          # Geospatial data (not in repo)
+├── figures/                       # Full-resolution figures used in the README and summaries
+│   └── web/                       # Web-sized JPEG copies shown inline
 ├── outputs/                       # Generated plots & presentations (not in repo)
-├── CLEANUP_REPORT.md              # Repo cleanup documentation
 └── .gitignore
 ```
 
@@ -105,70 +100,16 @@ All `.rds`, `.rda`, `.shp`, `.dbf` files are git-ignored. They must be obtained 
 - `bj_sh_pop_density.rds` -- population by radius
 - `bj_sh_highway_density.rds` -- road density by distance
 
-## R Packages
+## Requirements
 
-### Geospatial & Mapping
-| Package | Purpose |
-|---------|---------|
-| `sf` | Simple features for spatial data handling |
-| `terra` | Raster and vector geospatial analysis |
-| `tidyterra` | Tidy interface for `terra` objects |
-| `tmap` | Thematic map visualization |
-| `basemaps` | OpenStreetMap basemap tile fetching |
-| `osrm` | Interface to OSRM routing API |
+R (≥ 4.2) with Quarto. Main packages: `sf`, `terra`, `tidyterra`, `tmap`, `basemaps`, `osrm`, `ggplot2`, `ggpubr`, `ggrepel`, `MetBrewer`, `magick`, `showtext`, `dplyr`, `data.table`, `purrr`, `glue`, plus the bundled third-party `risingCoord` package (`main/risingCoord/`, by t.s.helianthus) for GCJ-02 / Baidu ↔ WGS-84 conversion.
 
-### Visualization
-| Package | Purpose |
-|---------|---------|
-| `ggplot2` | Core plotting framework |
-| `ggpubr` | Publication-ready plot utilities |
-| `ggrepel` | Non-overlapping text labels |
-| `ggalt` | Extra coordinate systems and geoms |
-| `ggthemes` | Additional themes |
-| `MetBrewer` | Color palettes inspired by museum artworks |
-| `colorspace` | Color manipulation and palettes |
-| `magick` | Image processing and compositing |
-| `showtext` | CJK font rendering in plots |
+Routing uses the public OSRM server at `https://routing.openstreetmap.de/` (no key needed); basemap tiles are fetched by `basemaps`.
 
-### Data Manipulation
-| Package | Purpose |
-|---------|---------|
-| `dplyr` | Data transformation verbs |
-| `data.table` | High-performance data operations |
-| `purrr` | Functional programming tools |
-| `magrittr` | Pipe operator (`%>%`) |
-| `glue` | String interpolation |
-| `stringr` | String manipulation |
+## License
 
-### Custom
-| Package | Purpose |
-|---------|---------|
-| `risingCoord` | In-repo package for GCJ-02/Baidu/WGS-84 coordinate transformations |
-
-## Style Conventions
-
-- Project color palette: `#E47250`, `#5A4A6F`, `#EBB261`, `#9D5A6C`
-- Plots: 300 DPI, 4000x2500px or 16x12 inches
-- Figure numbering: `Fig X-Y` (chapter-figure)
-- Chinese fonts via `showtext` for CJK text rendering
-
-## Common Tasks
-
-- **Regenerate plots**: Render `main/main_plot.qmd` via Quarto
-- **Add a new city**: Follow the pattern in `_coordTrans_sampling.R` and `_getDis.R`, add city boundary shapefile to `data/`
-- **Update POI data**: Replace CSV in `data/`, re-run `_coordTrans_sampling.R`
-
-## Output
-
-- **118+ PNG figures** organized as `Fig X-Y` (chapter-figure numbering)
-- **Quarto HTML report** rendered from `main_plot.qmd`
-- **PowerPoint presentations** for Beijing, Shanghai, and Taipei comparisons
-
-## External Services
-
-- OSRM routing API: `https://routing.openstreetmap.de/` (public, no auth required)
-- OSM basemap tiles fetched automatically by `basemaps` package
+Code is released under the [MIT License](LICENSE), except the bundled `main/risingCoord/` package, which is by t.s.helianthus (RisingLab), declares `License: None` in its DESCRIPTION, and is not relicensed here. Figures and text are © Felix Liu, licensed [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Third-party data (Amap POIs, OpenStreetMap, population grids, boundaries) are not redistributed here and remain under their original terms.
 
 ## Author
 
-**Felix Liu**
+**Felix Liu** · [sousekil.github.io](https://sousekil.github.io/)

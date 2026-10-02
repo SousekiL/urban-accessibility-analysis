@@ -28,7 +28,6 @@ $RECYCLE.BIN/
 *.sbn
 *.sbx
 *.cpg
-*.qmd
 
 # R数据文件
 *.rds
@@ -45,7 +44,8 @@ $RECYCLE.BIN/
 
 # ===== 图片文件 =====
 # 注意：ICON文件夹中的图标会被保留，因为它们是项目资源
-# outputs文件夹中的图片会被排除
+# outputs文件夹中的图片会被排除（README/SUMMARY 用到的图放在 figures/）
+outputs/
 
 # ===== IDE和编辑器 =====
 .vscode/
